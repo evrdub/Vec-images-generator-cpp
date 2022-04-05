@@ -20,6 +20,7 @@ SRC=./src/Format/CBitmap.cpp \
 	./src/Formes/CarreS.cpp  \
 	./src/Formes/Cercle.cpp  \
 	./src/Formes/CercleS.cpp  \
+	./src/File/FileLib.cpp  \
 	./src/main.cpp
 
 
