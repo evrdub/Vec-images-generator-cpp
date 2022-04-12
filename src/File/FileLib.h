@@ -27,8 +27,8 @@ using namespace std;
 #ifndef FILELIB_H_
 #define FILELIB_H_
 
-vector<Forme * > readFile(string filename);
-//vector<vector<Forme * >> readFile(string filename);
+vector<Forme * > readFile(string filename, int FacteurEchelle);
+vector<Forme * > sortFormes(vector<Forme * > Formes);
 vector<string> split (string s, string delim, string ignoreList);
 
 #endif /*FILELIB_H_*/

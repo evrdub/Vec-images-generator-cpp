@@ -1,0 +1,18 @@
+# La taille de l'image de base est 500*500 
+# Le facteur d'echelle max est 10 
+# Il y a 4 plans differents : 1er, 2e, 3e et arriere plan (par defaut)
+# Le nombre maximum de formes est 150
+
+# Formes disponibles : 
+# [POINT : x, y, couleur, transparence, plan;] 
+# [LIGNE : x1, y1, x2, y2, couleur, transparence, plan;] 
+# [RECTANGLE : x, y, longueur, hauteur, couleur, transparence, plan;]
+# [RECTANGLES : x, y, longueur, hauteur, couleur, transparence, plan;]
+# [CERCLE : x, y, epaisseur, rayon, couleur, transparence, plan;] 
+# [CERCLES : x, y, rayon, couleur, transparence, plan;] 
+# [CARRE : x, y, longueur, couleur, transparence, plan;]
+# [CARRES : x, y, longueur, couleur, transparence, plan;]
+
+# Formes de test
+[RECTANGLES : 0,0,500,500,blanc,100,1;]
+[CERCLES : 250,250,150,rouge,100,2;]

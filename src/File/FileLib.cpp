@@ -3,7 +3,7 @@
 #define DEBUGSPLIT 0
 #define DEBUGREADFILE 0
 
-vector<Forme * > readFile(string filename){
+vector<Forme * > readFile(string filename, int FacteurEchelle){
     vector<Forme * > result;
 
     string currentLine;
@@ -29,7 +29,7 @@ vector<Forme * > readFile(string filename){
                     couleur = Par[3];
                     transparence = stoi(Par[4]);
                     plan = stoi(Par[5]);
-                    Point * P = new Point(x1,y1,couleur,transparence,plan);
+                    Point * P = new Point(x1,y1,couleur,transparence,plan,FacteurEchelle);
                     result.push_back(P);
                 }
                 else if(shapeType == "LIGNE"){
@@ -40,7 +40,7 @@ vector<Forme * > readFile(string filename){
                     couleur = Par[5];
                     transparence = stoi(Par[6]);
                     plan = stoi(Par[7]);
-                    Ligne * L = new Ligne(x1,y1,x2,y2,couleur,transparence,plan);
+                    Ligne * L = new Ligne(x1,y1,x2,y2,couleur,transparence,plan,FacteurEchelle);
                     result.push_back(L);
                 }
                 else if(shapeType == "RECTANGLE"){
@@ -51,7 +51,7 @@ vector<Forme * > readFile(string filename){
                     couleur = Par[5];
                     transparence = stoi(Par[6]);
                     plan = stoi(Par[7]);
-                    Rectangle * R = new Rectangle(x1,y1,longueur,hauteur,couleur,transparence,plan);
+                    Rectangle * R = new Rectangle(x1,y1,longueur,hauteur,couleur,transparence,plan,FacteurEchelle);
                     result.push_back(R);
                 }
                 else if(shapeType == "RECTANGLES"){
@@ -62,7 +62,7 @@ vector<Forme * > readFile(string filename){
                     couleur = Par[5];
                     transparence = stoi(Par[6]);
                     plan = stoi(Par[7]);
-                    RectangleS * R = new RectangleS(x1,y1,longueur,hauteur,couleur,transparence,plan);
+                    RectangleS * R = new RectangleS(x1,y1,longueur,hauteur,couleur,transparence,plan,FacteurEchelle);
                     result.push_back(R);
                 }
                 else if(shapeType == "CERCLE"){
@@ -73,7 +73,7 @@ vector<Forme * > readFile(string filename){
                     couleur = Par[5];
                     transparence = stoi(Par[6]);
                     plan = stoi(Par[7]);
-                    Cercle * C = new Cercle(x1,y1,epaisseur,rayon,couleur,transparence,plan);
+                    Cercle * C = new Cercle(x1,y1,epaisseur,rayon,couleur,transparence,plan,FacteurEchelle);
                     result.push_back(C);
                 }
                 else if(shapeType == "CERCLES"){
@@ -83,7 +83,7 @@ vector<Forme * > readFile(string filename){
                     couleur = Par[4];
                     transparence = stoi(Par[5]);
                     plan = stoi(Par[6]);
-                    CercleS * C = new CercleS(x1,y1,rayon,couleur,transparence,plan);
+                    CercleS * C = new CercleS(x1,y1,rayon,couleur,transparence,plan,FacteurEchelle);
                     result.push_back(C);
                 }
                 else if(shapeType == "CARRE"){
@@ -93,7 +93,7 @@ vector<Forme * > readFile(string filename){
                     couleur = Par[4];
                     transparence = stoi(Par[5]);
                     plan = stoi(Par[6]);
-                    Carre * C = new Carre(x1,y1,longueur,couleur,transparence,plan);
+                    Carre * C = new Carre(x1,y1,longueur,couleur,transparence,plan,FacteurEchelle);
                     result.push_back(C);
                 }
                 else if(shapeType == "CARRES"){
@@ -103,7 +103,7 @@ vector<Forme * > readFile(string filename){
                     couleur = Par[4];
                     transparence = stoi(Par[5]);
                     plan = stoi(Par[6]);
-                    CarreS * C = new CarreS(x1,y1,longueur,couleur,transparence,plan);
+                    CarreS * C = new CarreS(x1,y1,longueur,couleur,transparence,plan,FacteurEchelle);
                     result.push_back(C);
                 }
             }
@@ -121,13 +121,12 @@ vector<Forme * > sortFormes(vector<Forme * > Formes){
     vector<Forme * > result;
     for(int i=1; i<=4; i++){
         for(int j=0; j<Formes.size();j++){
-            
-            int plan = Formes(j).getPlan();
+            Forme * F = Formes[j];
+            int plan = F->getPlan();
             if (plan == i){
-                result.push_back()
+                result.push_back(F);
             }
         }
-
     }
     return result;
 }

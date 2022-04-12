@@ -1,6 +1,6 @@
 #include "RectangleS.h"
 
-RectangleS::RectangleS(int myX, int myY, int myLongueur, int myHauteur, string myCouleur, int myTransparence, int planZ){
+RectangleS::RectangleS(int myX, int myY, int myLongueur, int myHauteur, string myCouleur, int myTransparence, int myplanZ, int myFacteurEchelle){
     X = myX;
     Y = myY;
     couleur = myCouleur;
@@ -8,6 +8,8 @@ RectangleS::RectangleS(int myX, int myY, int myLongueur, int myHauteur, string m
 
     longueur = myLongueur;
     hauteur = myHauteur;
+    planZ = myplanZ;
+    FacteurEchelle = myFacteurEchelle;    
 }
 
 RectangleS::~RectangleS(){
@@ -16,7 +18,7 @@ RectangleS::~RectangleS(){
 
 void RectangleS::Draw(CImage *img){
     for(int i=0; i<hauteur; i++){
-        Ligne L(X,Y+i,X+longueur-1,Y+i,couleur,transparence,planZ);
+        Ligne L(X,Y+i,X+longueur-1,Y+i,couleur,transparence,planZ,FacteurEchelle);
         L.Draw(img);
     }
 }

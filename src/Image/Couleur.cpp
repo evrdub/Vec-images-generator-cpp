@@ -32,6 +32,16 @@ Couleur::Couleur(string nomCouleur){
         G = 255;
         B = 0;
     }
+    else if(nomCouleur == "rose"){
+        R = 219;
+        G = 112;
+        B = 147;
+    }
+    else if(nomCouleur == "gris"){
+        R = 69;
+        G = 69;
+        B = 69;
+    }
     else{
         R = 0;
         G = 0;

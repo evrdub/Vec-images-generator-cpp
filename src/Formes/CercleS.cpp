@@ -1,6 +1,6 @@
 #include "CercleS.h"
 
-CercleS::CercleS(int myX, int myY, int myR, string myCouleur, int myTransparence, int myPlanZ){
+CercleS::CercleS(int myX, int myY, int myR, string myCouleur, int myTransparence, int myPlanZ, int myFacteurEchelle){
     X = myX;
     Y = myY;
     couleur = myCouleur;
@@ -8,6 +8,7 @@ CercleS::CercleS(int myX, int myY, int myR, string myCouleur, int myTransparence
     planZ = myPlanZ;
 
     R = myR;
+    FacteurEchelle = myFacteurEchelle;
 }
 
 CercleS::~CercleS(){
@@ -25,7 +26,7 @@ void CercleS::Draw(CImage *img){
             float calc = (i-X)*(i-X)+(j-Y)*(j-Y);
             //cout << " (i-X)*(i-X)+(j-Y)*(j-Y) = " << calc << " | R*R = " << R*R << endl;
             if( calc <= R*R ){
-                Point P(i,j,couleur,transparence,planZ);
+                Point P(i,j,couleur,transparence,planZ,FacteurEchelle);
                 P.Draw(img);
             }
         }

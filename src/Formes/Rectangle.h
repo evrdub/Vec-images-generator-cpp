@@ -16,7 +16,7 @@ protected:
     int hauteur;
 
 public:
-    Rectangle(int myX, int myY, int myLongueur, int myHauteur, string myCouleur, int myTransparence, int planZ);
+    Rectangle(int myX, int myY, int myLongueur, int myHauteur, string myCouleur, int myTransparence, int planZ, int myFacteurEchelle);
     Rectangle();
     ~Rectangle();
 

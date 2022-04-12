@@ -12,7 +12,7 @@ using namespace std;
 
 class Carre : public Rectangle{
 public:
-    Carre(int myX, int myY, int myLongueur, string myCouleur, int myTransparence, int planZ);
+    Carre(int myX, int myY, int myLongueur, string myCouleur, int myTransparence, int planZ, int myFacteurEchelle);
     Carre();
     ~Carre();
 

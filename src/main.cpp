@@ -24,24 +24,41 @@ using namespace std;
 #define YMAX 500
 
 int main(int argc, char * argv[]){
+    int FacteurEchelle;
+    string fileIn = argv[1];
+    string fileOut = argv[2];
+    if(argc == 3){              // pas de facteur d'echelle => par defaut 1
+        FacteurEchelle = 1; 
+        cout << "FacteurEchelle = " << FacteurEchelle << endl;
+    }
+    if(argc == 4){
+        FacteurEchelle = atoi(argv[3]); 
+        cout << "FacteurEchelle = " << FacteurEchelle << endl;
+    }
+
     cout << "(II) P_Bitmap exection start (" << __DATE__ << " - " << __TIME__ << ")" << endl;
     cout << "(II) + Number of arguments = " << argc << endl;
     cout << "(II) CBitmap object creation" << endl;
     CBitmap *image = new CBitmap();
-    string filename2 = "Sortie.bmp";
     cout << "(II) CImage pointer extraction" << endl;
-    CImage   *img = new CImage(XMAX, YMAX);
+    CImage   *img = new CImage(XMAX*FacteurEchelle, YMAX*FacteurEchelle);
 
     vector< Forme * > Formes;
 
     cout<<""<<endl;
     printf("\033[0;36m");
     cout << "--- HERE STARTS READFILE ---" << endl;
-    Formes = readFile("test.vec");
+    Formes = readFile(fileIn,FacteurEchelle);
+    cout << "Number of  'Formes' before sort = " << Formes.size() << endl;
     cout << "--- HERE STOPS  READFILE ---" << endl;
+    cout << "--- HERE STARTS PLAN SORTING ---" << endl;
+    Formes = sortFormes(Formes);
+    cout << "Number of  'Formes' after sort = " << Formes.size() << endl;
+    cout << "--- HERE STOPS  PLAN SORTING ---" << endl;
     printf("\033[0;37m");
     cout<<""<<endl;
     printf("\033[0;33m");
+
     /*
     cout << "--- HERE STARTS TESTING ---" << endl;
     string tempString = "[LIGNE : 0, 0, 0, 200, bleu, 100, 4;]";
@@ -112,14 +129,19 @@ int main(int argc, char * argv[]){
     cout << "Is vector 'Formes' empty : " << Formes.empty() << " (1 is true and 0 is false)" << endl;
     printf("\033[0;37m");
     
-    //for(int i = 0; i)
-
+    for(int i = 0; i<Formes.size(); i++){
+        Forme * F = Formes[i];
+        F->Draw(img);
+    }
+        
+    /*
     for (auto figure : Formes){
         figure->Draw(img);
     }
-    
+    */
+
     image->setImage( img );
     cout << "(II) CBitmap image saving" << endl;
-    image->SaveBMP(filename2);
+    image->SaveBMP(fileOut);
     return 1;
 }

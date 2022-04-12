@@ -1,6 +1,6 @@
 #include "Ligne.h"
 
-Ligne::Ligne(int myX, int myY, int myX2, int myY2, string myCouleur, int myTransparence, int myPlanZ){
+Ligne::Ligne(int myX, int myY, int myX2, int myY2, string myCouleur, int myTransparence, int myPlanZ, int myFacteurEchelle){
     X = myX;
     Y = myY;
     X2 = myX2;
@@ -8,6 +8,8 @@ Ligne::Ligne(int myX, int myY, int myX2, int myY2, string myCouleur, int myTrans
     couleur = myCouleur;
     transparence = myTransparence;
     planZ = myPlanZ;
+
+    FacteurEchelle = myFacteurEchelle;
 }
 
 Ligne::~Ligne(){
@@ -37,19 +39,19 @@ void Ligne::Draw(CImage *img){
         X_temp = X;
         for (i=0; i<=n; i++, X_temp += delta){
             Y_temp = (Y2-Y)*(X_temp-X)/(X2-X)+Y;
-            Point P(X_temp,Y_temp,couleur,transparence,planZ);
+            Point P(X_temp,Y_temp,couleur,transparence,planZ,FacteurEchelle);
             P.Draw(img);
         }
     }
     else if(dir == -1){
-        Point P(X,Y,couleur,transparence,planZ);
+        Point P(X,Y,couleur,transparence,planZ,FacteurEchelle);
         P.Draw(img);
     }
     else{
         Y_temp = Y;
         for (i=0; i<=n; i++, Y_temp += delta){
             X_temp = (X2-X)*(Y_temp-Y)/(Y2-Y)+X;
-            Point P(X_temp,Y_temp,couleur,transparence,planZ);
+            Point P(X_temp,Y_temp,couleur,transparence,planZ,FacteurEchelle);
             P.Draw(img);
 	    }
     }

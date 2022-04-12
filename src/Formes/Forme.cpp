@@ -1,6 +1,6 @@
 #include "Forme.h"
 
-Forme::Forme(int myX, int myY, string myCouleur, int myTransparence, string myType, int myPlanZ){
+Forme::Forme(int myX, int myY, string myCouleur, int myTransparence, string myType, int myPlanZ, int myFacteurEchelle){
     X = myX;
     Y = myY;
     couleur = myCouleur;
@@ -8,6 +8,7 @@ Forme::Forme(int myX, int myY, string myCouleur, int myTransparence, string myTy
     planZ = myPlanZ;
 
     type = myType;
+    FacteurEchelle = myFacteurEchelle;
 }
 
 Forme::Forme(){

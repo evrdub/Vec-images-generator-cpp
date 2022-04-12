@@ -1,6 +1,6 @@
 #include "Cercle.h"
 
-Cercle::Cercle(int myX, int myY, int myEpaisseur, int myR, string myCouleur, int myTransparence, int myPlanZ){
+Cercle::Cercle(int myX, int myY, int myEpaisseur, int myR, string myCouleur, int myTransparence, int myPlanZ, int myFacteurEchelle){
     X = myX;
     Y = myY;
     couleur = myCouleur;
@@ -9,6 +9,7 @@ Cercle::Cercle(int myX, int myY, int myEpaisseur, int myR, string myCouleur, int
 
     epaisseur = myEpaisseur;
     R = myR;
+    FacteurEchelle = myFacteurEchelle;
 }
 
 Cercle::Cercle(){
@@ -42,7 +43,7 @@ void Cercle::Draw(CImage *img){
             int Rmoins = R-epaisseur/2-1;
             //cout << "epaisseur = " << epaisseur << " | Rplus = " << Rplus << " | Rmoins = " << Rmoins << endl;
             if( calc <= (Rplus)*(Rplus) && calc >(Rmoins)*(Rmoins) ){
-                Point P(i,j,couleur,transparence,planZ);
+                Point P(i,j,couleur,transparence,planZ,FacteurEchelle);
                 P.Draw(img);
             }
         }

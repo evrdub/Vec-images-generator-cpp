@@ -1,11 +1,13 @@
 #include "Point.h"
 
-Point::Point(int myX, int myY, string myCouleur, int myTransparence, int myPlanZ){
+Point::Point(int myX, int myY, string myCouleur, int myTransparence, int myPlanZ, int myFacteurEchelle){
     X = myX;
     Y = myY;
     couleur = myCouleur;
     transparence = myTransparence;
     planZ = myPlanZ;
+
+    FacteurEchelle = myFacteurEchelle;
 }
 
 Point::~Point(){
@@ -13,21 +15,28 @@ Point::~Point(){
 }
 
 void Point::Draw(CImage *img){
+    int Xt,Yt;
     /*
     printf("\033[0;32m");
     cout << "Xmax = " << getXmax(img) << " | Ymax = " << getYmax(img) << endl;
     cout << "Current X = " << X << " | Current Y = " << Y << endl;
     printf("\033[0;37m");
     */
-    if( (X < getXmax(img)) && (Y < getYmax(img)) && (X >= 0) && (Y >= 1)){
-        CPixel *p = img->getPixel(X, Y);
-        Couleur col(couleur);
-        // p->Red()     = couleur precedente pixel 
-        // col.getRed() = couleur forme 
-        int tempR = ( (100-transparence)*p->Red()   + transparence*col.getRed()   ) / 100;
-        int tempG = ( (100-transparence)*p->Green() + transparence*col.getGreen() ) / 100;
-        int tempB = ( (100-transparence)*p->Blue()  + transparence*col.getBlue()  ) / 100;
-        p->RGB(tempR,tempG,tempB);
+    for(int i=0; i<FacteurEchelle; i++){
+        for(int j=0; j<FacteurEchelle; j++){
+            Xt = X*FacteurEchelle + i;
+            Yt = Y*FacteurEchelle + j;
+            if( (Xt < getXmax(img)) && (Yt < getYmax(img)) && (Xt >= 0) && (Yt >= 0)){
+            CPixel *p = img->getPixel(Xt, Yt);
+            Couleur col(couleur);
+            // p->Red()     = couleur precedente pixel 
+            // col.getRed() = couleur forme 
+            int tempR = ( (100-transparence)*p->Red()   + transparence*col.getRed()   ) / 100;
+            int tempG = ( (100-transparence)*p->Green() + transparence*col.getGreen() ) / 100;
+            int tempB = ( (100-transparence)*p->Blue()  + transparence*col.getBlue()  ) / 100;
+            p->RGB(tempR,tempG,tempB);
+            }
+        }
     }
 }
 

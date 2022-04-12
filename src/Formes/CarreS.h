@@ -12,7 +12,7 @@ using namespace std;
 
 class CarreS : public Carre{
 public:
-    CarreS(int myX, int myY, int myLongueur, string myCouleur, int myTransparence, int planZ);
+    CarreS(int myX, int myY, int myLongueur, string myCouleur, int myTransparence, int planZ, int myFacteurEchelle);
     ~CarreS();
 
     void Draw(CImage *img);

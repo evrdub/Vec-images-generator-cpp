@@ -12,7 +12,7 @@ using namespace std;
 
 class RectangleS : public Rectangle{
 public:
-    RectangleS(int myX, int myY, int myLongueur, int myHauteur, string myCouleur, int myTransparence, int planZ);
+    RectangleS(int myX, int myY, int myLongueur, int myHauteur, string myCouleur, int myTransparence, int planZ, int myFacteurEchelle);
     ~RectangleS();
 
     void Draw(CImage *img);
