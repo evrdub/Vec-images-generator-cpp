@@ -12,9 +12,10 @@ using namespace std;
 
 class Cercle : public Forme{
 private:
+    int epaisseur;
     int R;
 public:
-    Cercle(int myX, int myY, int myR, string myCouleur, int myTransparence, int myPlanZ);
+    Cercle(int myX, int myY, int myEpaisseur, int myR, string myCouleur, int myTransparence, int myPlanZ);
     Cercle();
     ~Cercle();
 

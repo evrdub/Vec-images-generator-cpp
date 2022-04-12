@@ -1,20 +1,20 @@
 #include "Cercle.h"
 
-#define ERROR_PERCT 1
-
-Cercle::Cercle(int myX, int myY, int myR, string myCouleur, int myTransparence, int myPlanZ){
+Cercle::Cercle(int myX, int myY, int myEpaisseur, int myR, string myCouleur, int myTransparence, int myPlanZ){
     X = myX;
     Y = myY;
     couleur = myCouleur;
     transparence = myTransparence;
     planZ = myPlanZ;
 
+    epaisseur = myEpaisseur;
     R = myR;
 }
 
 Cercle::Cercle(){
     X = 0;
     Y = 0;
+    epaisseur = 1;
     couleur = "blanc";
     transparence = 0;
     planZ = 0;
@@ -38,7 +38,10 @@ void Cercle::Draw(CImage *img){
             //cout << " (i-X)*(i-X)+(j-Y)*(j-Y) = " << calc << " | R*R = " << R*R << endl;
             //if( (calc <= R*R*(100+ERROR_PERCT)/100) && (calc >= R*R*(100-ERROR_PERCT)/100) ){
             //if(calc == R*R){
-            if( calc <= R*R && calc >(R-1)*(R-1)){
+            float Rplus = R+epaisseur/2;
+            int Rmoins = R-epaisseur/2-1;
+            //cout << "epaisseur = " << epaisseur << " | Rplus = " << Rplus << " | Rmoins = " << Rmoins << endl;
+            if( calc <= (Rplus)*(Rplus) && calc >(Rmoins)*(Rmoins) ){
                 Point P(i,j,couleur,transparence,planZ);
                 P.Draw(img);
             }

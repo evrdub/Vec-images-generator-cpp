@@ -20,5 +20,7 @@ Forme::Forme(){
 
 Forme::~Forme(){}
 
-
+int Forme::getPlan(){
+    return planZ;
+}
 
