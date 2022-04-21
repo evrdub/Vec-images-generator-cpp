@@ -27,8 +27,8 @@ Rectangle::~Rectangle(){
 }
 
 void Rectangle::Draw(CImage *img){
-    int longTemp = longueur - 1; // logique -> pour un carré 1x1 on va de (0,0) à (0,0) pas (0,1) etc
-    int hautTemp = hauteur  - 1; // idem
+    int longTemp = longueur-1; // logique -> pour un carré 1x1 on va de (0,0) à (0,0) pas (0,1) etc
+    int hautTemp = hauteur-1; // idem
     Ligne L1(X,Y,X,Y+hautTemp,couleur,transparence,planZ,FacteurEchelle);
     Ligne L2(X+1,Y,X+longTemp-1,Y,couleur,transparence,planZ,FacteurEchelle);
     Ligne L3(X+1,Y+hautTemp,X+longTemp-1,Y+hautTemp,couleur,transparence,planZ,FacteurEchelle);
@@ -39,3 +39,10 @@ void Rectangle::Draw(CImage *img){
     L4.Draw(img);
 }
 
+int Rectangle::getXmax(){ 
+    return X + longueur;
+}
+
+int Rectangle::getYmax(){
+    return Y + hauteur;
+}

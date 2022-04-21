@@ -22,3 +22,10 @@ void CarreS::Draw(CImage *img){
     }
 }
 
+int CarreS::getXmax(){ 
+    return X + longueur;
+}
+
+int CarreS::getYmax(){
+    return Y + longueur;
+}

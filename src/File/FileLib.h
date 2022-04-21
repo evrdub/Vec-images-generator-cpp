@@ -28,7 +28,10 @@ using namespace std;
 #define FILELIB_H_
 
 vector<Forme * > readFile(string filename, int FacteurEchelle);
-vector<Forme * > sortFormes(vector<Forme * > Formes);
+vector<Forme * > sortFormes(vector<Forme * > Formes, int plan_max);
+int getPlanMax(vector<Forme * > Formes);
+int getXmax(vector<Forme * > Formes);
+int getYmax(vector<Forme * > Formes);
 vector<string> split (string s, string delim, string ignoreList);
 
 #endif /*FILELIB_H_*/

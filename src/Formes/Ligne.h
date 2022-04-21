@@ -19,7 +19,8 @@ public:
     ~Ligne();
 
     void Draw(CImage *img);
-
+    int getXmax();
+    int getYmax();
 };
 
 #endif  /*LIGNE_H_*/

@@ -13,7 +13,6 @@ RectangleS::RectangleS(int myX, int myY, int myLongueur, int myHauteur, string m
 }
 
 RectangleS::~RectangleS(){
-
 }
 
 void RectangleS::Draw(CImage *img){
@@ -23,3 +22,10 @@ void RectangleS::Draw(CImage *img){
     }
 }
 
+int RectangleS::getXmax(){
+    return (X + longueur);
+}
+
+int RectangleS::getYmax(){
+    return (Y + hauteur);
+}

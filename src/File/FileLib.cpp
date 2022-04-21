@@ -1,8 +1,5 @@
 #include "FileLib.h"
 
-#define DEBUGSPLIT 0
-#define DEBUGREADFILE 0
-
 vector<Forme * > readFile(string filename, int FacteurEchelle){
     vector<Forme * > result;
 
@@ -13,14 +10,13 @@ vector<Forme * > readFile(string filename, int FacteurEchelle){
     string shapeType;
     int x1,y1,x2,y2,plan,transparence,rayon,longueur,hauteur,epaisseur;
     string couleur;
+    int line = 0;
 
     ifstream infile;
     infile.open(filename);
     if(infile.is_open()){
         while(getline(infile,currentLine)){
-            if(DEBUGREADFILE){ cout << "currentLine[0] = " << currentLine[0] << endl; }
             if(currentLine[0] != '#' && !currentLine.empty()){
-                if(DEBUGREADFILE){ cout << "currentLine = " << currentLine << endl; }
                 Par = split(currentLine,delim,ignoreList);
                 shapeType = Par[0];
                 if(shapeType == "POINT"){
@@ -116,19 +112,55 @@ vector<Forme * > readFile(string filename, int FacteurEchelle){
     }
 }
 
-vector<Forme * > sortFormes(vector<Forme * > Formes){
+vector<Forme * > sortFormes(vector<Forme * > Formes, int plan_max){
     int plan;
     vector<Forme * > result;
-    for(int i=1; i<=4; i++){
+    for(int i=1; i<=plan_max; i++){
         for(int j=0; j<Formes.size();j++){
             Forme * F = Formes[j];
             int plan = F->getPlan();
-            if (plan == i){
+            if (plan == plan_max-i+1){
                 result.push_back(F);
             }
         }
     }
     return result;
+}
+
+int getPlanMax(vector<Forme * > Formes){
+    int PlanMax = 1;
+    for(int i=0; i<Formes.size(); i++){
+        Forme * F = Formes[i];
+        int currentPlan = F->getPlan();
+        if(currentPlan > PlanMax){
+            PlanMax = currentPlan;
+        }
+    }
+    return PlanMax;
+}
+
+int getXmax(vector<Forme * > Formes){
+    int Xmax = 1;
+    for(int i=0; i<Formes.size(); i++){
+        Forme * F = Formes[i];
+        int currentX = F->getXmax();
+        if(currentX > Xmax){
+            Xmax = currentX;
+        }
+    }
+    return Xmax;
+}
+
+int getYmax(vector<Forme * > Formes){
+    int Ymax = 1;
+    for(int i=0; i<Formes.size(); i++){
+        Forme * F = Formes[i];
+        int currentY = F->getYmax();
+        if(currentY > Ymax){
+            Ymax = currentY;
+        }
+    }
+    return Ymax;
 }
 
 vector<string> split (string s, string delim, string ignoreList) {
@@ -138,10 +170,8 @@ vector<string> split (string s, string delim, string ignoreList) {
     int push = 0;
     int charEqu = 0;
     int ignore = 0;
-    if(DEBUGSPLIT){ cout << "s.length() = " << s.length() << endl; }
     for(int i=0; i<s.length(); i++){
         currentChar = s[i];
-        if(DEBUGSPLIT){ cout << "currentChar = " << currentChar << endl; }
         for(int j=0; j<delim.length(); j++){
             if(currentChar == delim[j]){
                 charEqu = 1;
@@ -158,12 +188,10 @@ vector<string> split (string s, string delim, string ignoreList) {
             }
             else{
                 tmpStr+=currentChar;
-                if(DEBUGSPLIT){ cout << "tmpStr = " << tmpStr << endl; }
             }
         }
         charEqu = 0;
         ignore = 0;
-        if(DEBUGSPLIT){ cout << "push = " << push << endl; }
         if(push == 1 and tmpStr != ""){
             result.push_back (tmpStr);
             tmpStr = "";

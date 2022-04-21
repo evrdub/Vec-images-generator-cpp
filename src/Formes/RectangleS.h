@@ -16,7 +16,8 @@ public:
     ~RectangleS();
 
     void Draw(CImage *img);
-    
+    int getXmax();
+    int getYmax();
 };
 
 #endif /*RECTANGLES_H_*/

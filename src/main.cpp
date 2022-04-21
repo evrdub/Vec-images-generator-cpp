@@ -20,10 +20,18 @@ using namespace std;
 #include "./Formes/CercleS.h"
 #include "./File/FileLib.h"
 
-#define XMAX 500
-#define YMAX 500
+string ProgressBar = "                                                  ";
+
+void updateProgressBar(int pourcentage){
+    for(int i=0; i<pourcentage/2; i++){
+        ProgressBar[i] = '#';
+    }
+}
 
 int main(int argc, char * argv[]){
+    printf("\033[0;32m");
+    cout << "Start (" << __DATE__ << " - " << __TIME__ << ")" << endl;
+
     int FacteurEchelle;
     string fileIn = argv[1];
     string fileOut = argv[2];
@@ -36,112 +44,36 @@ int main(int argc, char * argv[]){
         cout << "FacteurEchelle = " << FacteurEchelle << endl;
     }
 
-    cout << "(II) P_Bitmap exection start (" << __DATE__ << " - " << __TIME__ << ")" << endl;
-    cout << "(II) + Number of arguments = " << argc << endl;
-    cout << "(II) CBitmap object creation" << endl;
-    CBitmap *image = new CBitmap();
-    cout << "(II) CImage pointer extraction" << endl;
-    CImage   *img = new CImage(XMAX*FacteurEchelle, YMAX*FacteurEchelle);
-
     vector< Forme * > Formes;
 
-    cout<<""<<endl;
     printf("\033[0;36m");
-    cout << "--- HERE STARTS READFILE ---" << endl;
+    cout << "--- READFILE ---" << endl;
     Formes = readFile(fileIn,FacteurEchelle);
-    cout << "Number of  'Formes' before sort = " << Formes.size() << endl;
-    cout << "--- HERE STOPS  READFILE ---" << endl;
-    cout << "--- HERE STARTS PLAN SORTING ---" << endl;
-    Formes = sortFormes(Formes);
-    cout << "Number of  'Formes' after sort = " << Formes.size() << endl;
-    cout << "--- HERE STOPS  PLAN SORTING ---" << endl;
-    printf("\033[0;37m");
-    cout<<""<<endl;
-    printf("\033[0;33m");
+    cout << "--- PLAN SORTING ---" << endl;
+    Formes = sortFormes(Formes, getPlanMax(Formes));
+    cout << "--- GETTING MAX X Y ---" << endl;
+    int Xmax = getXmax(Formes);
+    int Ymax = getYmax(Formes);
+    cout << "Xmax = " << Xmax << " | Ymax = " << Ymax << endl;
+    cout << "--- CREATING IMAGE ---" << endl;
+    CBitmap *image = new CBitmap();
+    CImage   *img = new CImage(Ymax*FacteurEchelle, Xmax*FacteurEchelle);
 
-    /*
-    cout << "--- HERE STARTS TESTING ---" << endl;
-    string tempString = "[LIGNE : 0, 0, 0, 200, bleu, 100, 4;]";
-    string delim = "[]:,;";
-    string ignoreList = " ";
-    vector<string> strVec = split(tempString,delim,ignoreList);
-    for (auto tempString2 : strVec){
-        cout << tempString2 << endl;
-    }
-    
-    //cout << strVec[0] << endl;
-    cout << "--- HERE STOPS  TESTING ---" << endl;
-    printf("\033[0;37m");
-    cout<<""<<endl;
-    */
-    /*
-    // test de Point (ici une diagonale)
-    for(int i; i<XMAX; i++){
-        Point * P = new Point(i,i,"blanc",100,0);
-        Formes.push_back(P);
-    }
-    
-    // test de Ligne
-    Ligne * L1 = new Ligne(0,0,0,60,"bleu",100,0);
-    Formes.push_back(L1);
-    Ligne * L2 = new Ligne(0,0,60,23,"vert",100,0);
-    Formes.push_back(L2);
-    
-    // test de Rectangle
-    Rectangle * R1 = new Rectangle(15,15,30,123,"blanc",100,0);
-    Formes.push_back(R1);
-    Rectangle * R2 = new Rectangle(119,119,1,1,"bleu",30,0);
-    Formes.push_back(R2);
-    
-    // test de Carre
-    Carre * C1 = new Carre(19,28,40,"vert",70,0);
-    Formes.push_back(C1);
-    
-    // test de CarreS
-    CarreS * CS1 = new CarreS(19,28,40,"vert",70,0);
-    Formes.push_back(CS1);
-
-    // test de RectangleS
-    RectangleS * RS1 = new RectangleS(19,28,60,13,"rouge",30,0);
-    Formes.push_back(RS1);
-    
-
-    // test de CercleS
-    CercleS * CeS1 = new CercleS(250,250,10,"rouge",100,0);
-    Formes.push_back(CeS1);
-
-    CercleS * CeS2 = new CercleS(250,250,9,"noir",100,0);
-    Formes.push_back(CeS2);
-
-    // test de Cercle
-    Cercle * Ce1 = new Cercle(250,250,3,50,"rouge",100,0);
-    Formes.push_back(Ce1);
-
-    Cercle * Ce2 = new Cercle(250,250,1,50,"bleu",100,0);
-    Formes.push_back(Ce2);
-
-    Cercle * Ce3 = new Cercle(12,12,1,5,"rouge",100,0);
-    Formes.push_back(Ce3);
-    */
-
-    printf("\033[0;32m");
-    cout << "Number of  'Formes' = " << Formes.size() << endl;
-    cout << "Is vector 'Formes' empty : " << Formes.empty() << " (1 is true and 0 is false)" << endl;
-    printf("\033[0;37m");
-    
+    cout << "Number of  shapes = " << Formes.size() << endl;
+    cout << "--- DRAWING SHAPES ---" << endl;
     for(int i = 0; i<Formes.size(); i++){
+        updateProgressBar(i*100/Formes.size());
+        cout << "\r[" << ProgressBar << "] - " << i*100/Formes.size() << "% - " << i << " / " << Formes.size();
         Forme * F = Formes[i];
         F->Draw(img);
+        cout.flush();
     }
-        
-    /*
-    for (auto figure : Formes){
-        figure->Draw(img);
-    }
-    */
-
+    // pour avoir une barre à 100%, sinon reste bloqué un peu avant (ex 98%)
+    updateProgressBar(100);
+    cout << "\r[" << ProgressBar << "] - " << 100 << "% - " << Formes.size() << " / " << Formes.size() << endl;
+    
+    cout << "--- IMAGE SAVING ---" << endl;
     image->setImage( img );
-    cout << "(II) CBitmap image saving" << endl;
     image->SaveBMP(fileOut);
     return 1;
 }

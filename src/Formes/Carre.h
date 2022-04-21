@@ -17,7 +17,8 @@ public:
     ~Carre();
 
     void Draw(CImage *img);
-    
+    int getXmax();
+    int getYmax();
 };
 
 #endif /*CARRE_H_*/

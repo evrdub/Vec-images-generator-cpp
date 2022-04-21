@@ -37,3 +37,10 @@ void Carre::Draw(CImage *img){
     L4.Draw(img);
 }
 
+int Carre::getXmax(){ 
+    return X + longueur;
+}
+
+int Carre::getYmax(){
+    return Y + longueur;
+}

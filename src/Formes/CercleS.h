@@ -18,7 +18,8 @@ public:
     ~CercleS();
 
     void Draw(CImage *img);
-
+    int getXmax();
+    int getYmax();
 };
 
 #endif  /*CERCLES_H_*/

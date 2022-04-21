@@ -18,8 +18,10 @@ public:
     ~Point();
 
     void Draw(CImage *img);
-    int getXmax(CImage *img);
-    int getYmax(CImage *img);
+    int getXmaxIm(CImage *img);
+    int getYmaxIm(CImage *img);
+    int getXmax();
+    int getYmax();
 
 };
 

@@ -21,7 +21,8 @@ public:
     ~Rectangle();
 
     void Draw(CImage *img);
-    
+    int getXmax();
+    int getYmax();
 };
 
 #endif /*RECTANGLE_H_*/

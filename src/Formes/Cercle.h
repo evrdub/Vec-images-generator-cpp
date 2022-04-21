@@ -20,7 +20,8 @@ public:
     ~Cercle();
 
     void Draw(CImage *img);
-
+    int getXmax();
+    int getYmax();
 };
 
 #endif  /*CERCLE_H_*/

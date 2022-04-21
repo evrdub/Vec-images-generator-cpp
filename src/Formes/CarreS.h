@@ -16,7 +16,8 @@ public:
     ~CarreS();
 
     void Draw(CImage *img);
-    
+    int getXmax();
+    int getYmax();
 };
 
 #endif /*CARRES_H_*/

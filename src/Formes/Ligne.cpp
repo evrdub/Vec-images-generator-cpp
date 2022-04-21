@@ -56,3 +56,11 @@ void Ligne::Draw(CImage *img){
 	    }
     }
 }
+
+int Ligne::getXmax(){
+    return ( (X>X2) ? X : X2 );
+}
+
+int Ligne::getYmax(){
+    return ( (Y>Y2) ? Y : Y2 );
+}

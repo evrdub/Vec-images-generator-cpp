@@ -16,17 +16,11 @@ Point::~Point(){
 
 void Point::Draw(CImage *img){
     int Xt,Yt;
-    /*
-    printf("\033[0;32m");
-    cout << "Xmax = " << getXmax(img) << " | Ymax = " << getYmax(img) << endl;
-    cout << "Current X = " << X << " | Current Y = " << Y << endl;
-    printf("\033[0;37m");
-    */
     for(int i=0; i<FacteurEchelle; i++){
         for(int j=0; j<FacteurEchelle; j++){
             Xt = X*FacteurEchelle + i;
             Yt = Y*FacteurEchelle + j;
-            if( (Xt < getXmax(img)) && (Yt < getYmax(img)) && (Xt >= 0) && (Yt >= 0)){
+            if( (Xt < getXmaxIm(img)) && (Yt < getYmaxIm(img)) && (Xt >= 0) && (Yt >= 0)){
             CPixel *p = img->getPixel(Xt, Yt);
             Couleur col(couleur);
             // p->Red()     = couleur precedente pixel 
@@ -40,10 +34,18 @@ void Point::Draw(CImage *img){
     }
 }
 
-int Point::getXmax(CImage *img){
+int Point::getXmaxIm(CImage *img){
     return img->getLargeur();
 }
 
-int Point::getYmax(CImage *img){
+int Point::getYmaxIm(CImage *img){
     return img->size();
+}
+
+int Point::getXmax(){
+    return X;
+}
+
+int Point::getYmax(){
+    return Y;
 }

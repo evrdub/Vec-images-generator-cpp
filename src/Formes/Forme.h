@@ -28,6 +28,8 @@ public:
     ~Forme();
 
     int getPlan();
+    virtual int getXmax();
+    virtual int getYmax();
     virtual void Draw(CImage *img) = 0;
 };
 

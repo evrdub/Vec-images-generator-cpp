@@ -25,3 +25,11 @@ int Forme::getPlan(){
     return planZ;
 }
 
+int Forme::getXmax(){ 
+    return X;
+}
+
+int Forme::getYmax(){
+    return Y;
+}
+
