@@ -1,9 +1,0 @@
-
-[LIGNE : 0, 0, 0, 200, bleu, 100, 4;]
-[RECTANGLE : 100, 359, 155, 23, blanc, 30, 4;]
-[RECTANGLES : 120, 379, 155, 23, rose, 100, 1;]
-[CERCLE : 2, 43, 3, 80, bleu, 70, 2;] 
-[CERCLES : 400, 499, 100, vert, 20, 3;]
-[CERCLES : 250, 250, 100, rouge, 50, 3;] 
-[CARRE : 380, 10, 314, rouge, 30, 1;]
-[CARRES : 10, 380, 44, gris, 80, 2;]
