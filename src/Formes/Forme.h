@@ -11,9 +11,6 @@ using namespace std;
 #define FORME_H_
 
 class Forme{
-private:
-    string type;
-
 protected:
     int X;
     int Y;

@@ -15,6 +15,7 @@ private:
     int R;
 public:
     CercleS(int myX, int myY, int myR, string myCouleur, int myTransparence, int myPlanZ, int myFacteurEchelle);
+    CercleS();
     ~CercleS();
 
     void Draw(CImage *img);

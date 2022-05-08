@@ -6,9 +6,18 @@ CercleS::CercleS(int myX, int myY, int myR, string myCouleur, int myTransparence
     couleur = myCouleur;
     transparence = myTransparence;
     planZ = myPlanZ;
-
     R = myR;
     FacteurEchelle = myFacteurEchelle;
+}
+
+CercleS::CercleS(){
+    X = 0;
+    Y = 0;
+    couleur = "blanc";
+    transparence = 0;
+    planZ = 1;
+    R = 1;
+    FacteurEchelle = 1;
 }
 
 CercleS::~CercleS(){

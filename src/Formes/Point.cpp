@@ -6,8 +6,16 @@ Point::Point(int myX, int myY, string myCouleur, int myTransparence, int myPlanZ
     couleur = myCouleur;
     transparence = myTransparence;
     planZ = myPlanZ;
-
     FacteurEchelle = myFacteurEchelle;
+}
+
+Point::Point(){
+    X = 0;
+    Y = 0;
+    couleur = "blanc";
+    transparence = 0;
+    planZ = 1;
+    FacteurEchelle = 1;
 }
 
 Point::~Point(){

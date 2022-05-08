@@ -8,8 +8,18 @@ Ligne::Ligne(int myX, int myY, int myX2, int myY2, string myCouleur, int myTrans
     couleur = myCouleur;
     transparence = myTransparence;
     planZ = myPlanZ;
-
     FacteurEchelle = myFacteurEchelle;
+}
+
+Ligne::Ligne(){
+    X = 0;
+    Y = 0;
+    X2 = 0;
+    Y2 = 0;
+    couleur = "blanc";
+    transparence = 0;
+    planZ = 1;
+    FacteurEchelle = 1;
 }
 
 Ligne::~Ligne(){

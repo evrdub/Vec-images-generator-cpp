@@ -16,6 +16,7 @@ private:
     int Y2;
 public:
     Ligne(int myX, int myY, int myX2, int myY2, string myCouleur, int myTransparence, int myPlanZ, int myFacteurEchelle);
+    Ligne();
     ~Ligne();
 
     void Draw(CImage *img);

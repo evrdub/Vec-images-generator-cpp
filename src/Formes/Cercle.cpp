@@ -6,7 +6,6 @@ Cercle::Cercle(int myX, int myY, int myEpaisseur, int myR, string myCouleur, int
     couleur = myCouleur;
     transparence = myTransparence;
     planZ = myPlanZ;
-
     epaisseur = myEpaisseur;
     R = myR;
     FacteurEchelle = myFacteurEchelle;
@@ -15,12 +14,12 @@ Cercle::Cercle(int myX, int myY, int myEpaisseur, int myR, string myCouleur, int
 Cercle::Cercle(){
     X = 0;
     Y = 0;
-    epaisseur = 1;
     couleur = "blanc";
     transparence = 0;
-    planZ = 0;
-
+    planZ = 1;
+    epaisseur = 1;
     R = 1;
+    FacteurEchelle = 1;
 }
 
 Cercle::~Cercle(){
@@ -34,7 +33,7 @@ void Cercle::Draw(CImage *img){
         for(int j=Y_depart; j< 2*R+Y_depart; j++){
             float calc = (i-X)*(i-X)+(j-Y)*(j-Y);
             float Rplus = R+epaisseur/2;
-            int Rmoins = R-epaisseur/2-1;
+            float Rmoins = R-epaisseur/2-1;
             if( calc <= (Rplus)*(Rplus) && calc >(Rmoins)*(Rmoins) ){
                 Point P(i,j,couleur,transparence,planZ,FacteurEchelle);
                 P.Draw(img);

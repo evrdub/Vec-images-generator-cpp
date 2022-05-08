@@ -15,10 +15,6 @@ public:
     Carre(int myX, int myY, int myLongueur, string myCouleur, int myTransparence, int planZ, int myFacteurEchelle);
     Carre();
     ~Carre();
-
-    void Draw(CImage *img);
-    int getXmax();
-    int getYmax();
 };
 
 #endif /*CARRE_H_*/

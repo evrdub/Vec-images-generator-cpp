@@ -5,27 +5,23 @@ CarreS::CarreS(int myX, int myY, int myLongueur, string myCouleur, int myTranspa
     Y = myY;
     couleur = myCouleur;
     transparence = myTransparence;
-
     longueur = myLongueur;
-    planZ= myplanZ;
+    hauteur = myLongueur;
+    planZ = myplanZ;
     FacteurEchelle = myFacteurEchelle;
+}
+
+CarreS::CarreS(){
+    X = 0;
+    Y = 0;
+    couleur = "blanc";
+    transparence = 0;
+    longueur = 1;
+    hauteur = 1;
+    planZ = 1;
+    FacteurEchelle = 1;
 }
 
 CarreS::~CarreS(){
 
-}
-
-void CarreS::Draw(CImage *img){
-    for(int i=0; i<longueur; i++){
-        Ligne L(X,Y+i,X+longueur-1,Y+i,couleur,transparence,planZ,FacteurEchelle);
-        L.Draw(img);
-    }
-}
-
-int CarreS::getXmax(){ 
-    return X + longueur;
-}
-
-int CarreS::getYmax(){
-    return Y + longueur;
 }

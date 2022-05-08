@@ -15,6 +15,7 @@ using namespace std;
 class Point : public Forme{
 public:
     Point(int myX, int myY, string myCouleur, int myTransparence, int myPlanZ, int myFacteurEchelle);
+    Point();
     ~Point();
 
     void Draw(CImage *img);

@@ -6,7 +6,6 @@ Forme::Forme(int myX, int myY, string myCouleur, int myTransparence, int myPlanZ
     couleur = myCouleur;
     transparence = myTransparence;
     planZ = myPlanZ;
-
     FacteurEchelle = myFacteurEchelle;
 }
 
@@ -15,7 +14,8 @@ Forme::Forme(){
     Y = 0;
     couleur = "blanc";
     transparence = 0;
-    type = "point";
+    planZ = 1;
+    FacteurEchelle = 1;
 }
 
 Forme::~Forme(){}
