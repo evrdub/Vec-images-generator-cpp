@@ -23,7 +23,7 @@ protected:
     int FacteurEchelle;
 
 public:
-    Forme(int myX, int myY, string myCouleur, int myTransparence, string myType, int myPlanZ, int myFacteurEchelle);
+    Forme(int myX, int myY, string myCouleur, int myTransparence, int myPlanZ, int myFacteurEchelle);
     Forme();
     ~Forme();
 
